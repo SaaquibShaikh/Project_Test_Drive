@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <windows.h>
-#include "C:/MinGW/include/GL/glut.h"
+#include <gl/glut.h>
 #include <math.h>
 #include<string.h>
 
@@ -57,7 +57,7 @@ void renderBitmapString(float x, float y, void *font, const char *string)
 
 void readFromFile() {
 
-	FILE *fp = fopen("HighScoreFile.txt" ,"r");
+	FILE *fp = fopen("\%appdata\%\\Test Drive\\HighScoreFile.txt" ,"r");
 	int i=0;
 	if(fp!= NULL){
 		while(fread(&ch,sizeof(char),1 ,fp)){
@@ -69,7 +69,7 @@ void readFromFile() {
 }
 
 void writeIntoFile() {						//To write high score on to file
-	FILE *fp = fopen("HighScoreFile.txt" ,"w");
+	FILE *fp = fopen("\%appdata\%\\Test Drive\\HighScoreFile.txt" ,"w");
 	int i=0;
 	char temp[40];
 	if(fp!= NULL){
