@@ -47,6 +47,7 @@ const int font4 = (int)GLUT_STROKE_ROMAN;
 
 char* gameDataPath = getenv("APPDATA");
 char gameDataFile[500];
+bool isDirCreated = false;
 
 
 char s[30];
@@ -60,6 +61,13 @@ void renderBitmapString(float x, float y, void *font, const char *string)
     }
 }
 
+void createDir(){
+    strcat(gameDataPath, "\\TestDrive");
+    strcpy(gameDataFile,gameDataPath);
+    strcat(gameDataFile,"\\HighScoreFile.txt");
+    _mkdir(gameDataPath);
+    isDirCreated = true;
+}
 
 void readFromFile() {
     
@@ -75,10 +83,6 @@ void readFromFile() {
 }
 
 void writeIntoFile() {						//To write high score on to file
-    strcat(gameDataPath, "\\TestDrive");
-    strcpy(gameDataFile,gameDataPath);
-    strcat(gameDataFile,"\\HighScoreFile.txt");
-    _mkdir(gameDataPath);
 	FILE *fp = fopen(gameDataFile ,"w");
 	int i=0;
 	char temp[40];
@@ -652,6 +656,9 @@ void timer(int)
 
 int main(int argc, char *argv[])
 {
+    if (isDirCreated == false){
+        createDir();
+    }
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
     glutInitWindowSize(500, 650);
