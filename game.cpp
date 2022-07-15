@@ -9,6 +9,8 @@
 #include <gl/glut.h>
 #include <math.h>
 #include<string.h>
+#include <direct.h>
+#include <sys/stat.h>
 
 //Game Speed
 int FPS = 50;
@@ -43,6 +45,10 @@ const int font2 = (int)GLUT_BITMAP_HELVETICA_18;
 const int font3 = (int)GLUT_BITMAP_8_BY_13;
 const int font4 = (int)GLUT_STROKE_ROMAN;
 
+char* gameDataPath = getenv("APPDATA");
+char gameDataFile[500];
+
+
 char s[30];
 void renderBitmapString(float x, float y, void *font, const char *string)
 {
@@ -56,8 +62,8 @@ void renderBitmapString(float x, float y, void *font, const char *string)
 
 
 void readFromFile() {
-
-	FILE *fp = fopen("HighScoreFile.txt" ,"r");
+    
+	FILE *fp = fopen(gameDataFile ,"r");
 	int i=0;
 	if(fp!= NULL){
 		while(fread(&ch,sizeof(char),1 ,fp)){
@@ -69,7 +75,11 @@ void readFromFile() {
 }
 
 void writeIntoFile() {						//To write high score on to file
-	FILE *fp = fopen("HighScoreFile.txt" ,"w");
+    strcat(gameDataPath, "\\TestDrive");
+    strcpy(gameDataFile,gameDataPath);
+    strcat(gameDataFile,"\\HighScoreFile.txt");
+    _mkdir(gameDataPath);
+	FILE *fp = fopen(gameDataFile ,"w");
 	int i=0;
 	char temp[40];
 	if(fp!= NULL){
