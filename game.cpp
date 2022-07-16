@@ -550,7 +550,7 @@ void fristDesign()
 
     glColor3f(1.000, 1.000, 1.000);
     renderBitmapString(30, 50 - 6 + 10, (void *)font3, "Press UP    to Increase Speed");
-    renderBitmapString(30, 50 - 8 + 10, (void *)font3, "Press DWON  to Decrease Speed");
+    renderBitmapString(30, 50 - 8 + 10, (void *)font3, "Press DOWN  to Decrease Speed");
     renderBitmapString(30, 50 - 10 + 10, (void *)font3, "Press RIGHT to Turn Right");
     renderBitmapString(30, 50 - 12 + 10, (void *)font3, "Press LEFT  to Turn Left");
 
